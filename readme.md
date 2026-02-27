@@ -157,7 +157,8 @@ accelerate launch --main_process_port 29501 scripts/train_wm.py --dataset_root_p
 ### 🛸 (3) <span style="color:red;">New</span>: Post-train world model on down-stream tasks
 Pretrained world model may not accurate enough in contact-rich or deformable object tasks. Following the pipeline in (1)(2), you can also post-train world model on down-stream tasks as in paper [VLAW](https://arxiv.org/abs/2602.12063).
 
-Post-trained ctrl-world can suport long-horizon policy-in-the-loop rollout and generate realistic long videos: (top row is real world and bottom row is world model)
+Post-trained ctrl-world can support long-horizon policy-in-the-loop rollout and generate realistic long videos. 
+Some examples is shown in below. Starting form the same initial condition, we rollout policy in **both real world and world model** for 20 seconds. The Top row is real world and bottom row is world model. More videos [**here**](https://sites.google.com/view/vlaw-arxiv).
 <p>
     <img src="synthetic_traj/gallery/post-trained_1.gif" alt="wild-data" width="40%" />
     <img src="synthetic_traj/gallery/post-trained_2.gif" alt="wild-data" width="40%" />
