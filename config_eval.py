@@ -96,7 +96,8 @@ class wm_args:
         self.gripper_max = self.gripper_max_dict.get(self.task_type, 0.75)
         self.z_min = self.z_min_dict.get(self.task_type, 0.18)
         # Default task_name
-        self.task_name = f"Rollouts_interact_pi"
+        self.task_name = f"Rollouts_interact_pi_eval"
+        
         if self.task_type == "replay":
             self.task_name = "Rollouts_replay"
 
@@ -115,110 +116,75 @@ class wm_args:
             self.instruction = [""] * len(self.val_id)
             self.task_name = "Rollouts_keyboard"
 
-        # elif self.task_type == "keyboard2":
-        #     self.val_dataset_dir = "/cephfs/shared/droid_hf/droid_svd_v2"
-        #     self.val_id = ["1499"]*100
-        #     self.start_idx = [8] * len(self.val_id) # 2599 8 #9499 10
-        #     self.instruction = [""] * len(self.val_id)
-        #     self.task_name = "Rollouts_keyboard_1499"
-        #     self.ineraction_num = 7
 
         elif self.task_type == "pickplace":
             self.interact_num = 15
-            # self.val_dataset_dir = "dataset_example/droid_new_setup"
-            # self.val_id = ['0001','0002','0003']
-            # self.start_idx = [0] * len(self.val_id)
-            # self.instruction = [
-            #     "pick up the green block and place in plate",
-            #     "pick up the green block and place in plate",
-            #     "pick up the blue block and place in plate",]
-
-            self.val_dataset_dir = '/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0914/droid_pi05'
-            self.val_id = [203038,203715,203803,203837,204021,204112,204202,204331,204437,204502]
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 2
+            self.val_id = ['0000','0001','0002','0003','0004','0005','0006','0007','0008','0009']*repeat_num
             self.start_idx = [0]*len(self.val_id)
-            self.instruction = ['pick up the blue block and place in white plate', 'pick up the blue block and place in white plate', 'pick up the blue block and place in white plate',
-                                'pick up the blue block and place in white plate', 'pick up the blue block and place in white plate', 'pick up the green block and place in white plate',
-                                'pick up the green block and place in white plate', 'pick up the green block and place in white plate', 'pick up the red block and place in white plate',
-                                'pick up the red block and place in white plate']
+            self.instruction = ['pick up the blue block and place in white plate', 
+                                'pick up the blue block and place in white plate', 
+                                'pick up the blue block and place in white plate',
+                                'pick up the blue block and place in white plate', 
+                                'pick up the blue block and place in white plate', 
+                                'pick up the green block and place in white plate',
+                                'pick up the green block and place in white plate', 
+                                'pick up the green block and place in white plate',
+                                'pick up the red block and place in white plate',
+                                'pick up the red block and place in white plate']*repeat_num
 
         elif self.task_type == "towel_fold":
             self.interact_num = 15
-            self.val_dataset_dir = "dataset_example/droid_new_setup"
-            self.val_id =['0004','0005']
-            self.start_idx = [0] * len(self.val_id)
-            self.instruction = ["fold the towel"] * len(self.val_id)
-
-            self.val_dataset_dir = 'dataset_example/droid_new_setup_eval/towel_fold'
-            self.val_id = ['000018', '000044', '000120', '000228', '000255', '000336', '000403', '000427', '000453', '000643', '000739', '000803', '000833', '000902', '235555', '235713', '235826', '235933']
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 2
+            self.val_id = ['0000','0001','0002','0003','0004','0005','0006','0007','0008','0009']*repeat_num
             self.start_idx = [0]*len(self.val_id)
             self.instruction = ['fold the towel']*len(self.val_id)
 
         elif self.task_type == "wipe_table":
-            # self.val_dataset_dir = "dataset_example/droid_new_setup"
-            # self.val_id = ['0006','0007']
-            # self.start_idx = [0] * len(self.val_id)
-            # self.instruction = [
-            #     "move the towel from left to right",
-            #     "move the towel from left to right"
-            # ]
-            self.val_dataset_dir = "/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0918/droid_pi05"
-            self.val_id = ['134750', '134908', '135009', '135048', '135205']
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 4
+            self.val_id = ['0000','0001','0002','0003','0004']*repeat_num
             self.start_idx = [0] * len(self.val_id)
-            self.instruction = ['moving the towel from left to right', 'moving the towel from right to left', 'moving the towel from left to right','moving the towel from left to right','moving the towel from left to right']
+            self.instruction = ['moving the towel from left to right', 
+                                'moving the towel from right to left', 
+                                'moving the towel from left to right',
+                                'moving the towel from left to right',
+                                'moving the towel from left to right']*repeat_num
 
         elif self.task_type == "tissue":
-            # self.interact_num = 10
-            # self.val_dataset_dir = "dataset_example/droid_new_setup"
-            # self.val_id = ['0008','0009']
-            # self.start_idx = [0] * len(self.val_id)
-            # self.instruction = ["pull one tissue out of the box"] * len(self.val_id)
-            # self.policy_skip_step = 3
-
-            self.val_dataset_dir = "/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0918/droid_pi05"
-            self.val_id = ['135334', '135425', '135525', '135623']
-            self.start_idx = [0] * len(self.val_id)
-            self.instruction = ['pull one tissue out of the box']*len(self.val_id)
-            self.policy_skip_step = 3
-
-            self.val_dataset_dir = "/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0918/droid_pi05"
-            self.val_id = ['135334', '135425', '135525', '135623']
-            self.start_idx = [0] * len(self.val_id)
-            self.instruction = ['pull one tissue out of the box']*len(self.val_id)
-            self.policy_skip_step = 3
-
-            self.val_dataset_dir = "/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0922/droid_pi05"
-            self.val_id = ['213026','213128','213222','213333','213535']
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 4
+            self.val_id = ['0000', '0001', '0002', '0003', '0004']*repeat_num
             self.start_idx = [0] * len(self.val_id)
             self.instruction = ['pull one tissue out of the box']*len(self.val_id)
             self.policy_skip_step = 3
 
         elif self.task_type == "close_laptop":
-            self.val_dataset_dir = "dataset_example/droid_new_setup"
-            self.val_id = ['0010','0011']
-            self.start_idx = [0] * len(self.val_id)
-            self.instruction = ["close the laptop"] * len(self.val_id)
-            self.policy_skip_step = 3
 
-            self.val_dataset_dir = "dataset_example/droid_new_setup_eval/laptop"
-            self.val_id = ['135749','135849','135931','175856','175930','180035']
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 4
+            self.val_id = ['0000', '0001', '0002', '0003', '0004']*repeat_num
             self.start_idx = [0] * len(self.val_id)
             self.instruction = ["close the laptop"] * len(self.val_id)
             self.policy_skip_step = 3
 
         elif self.task_type == "stack":
-            self.val_dataset_dir = "dataset_example/droid_new_setup"
-            self.val_id = ['0012','0013']
-            self.start_idx = [5] * len(self.val_id)
-            self.instruction = ["stack the blue block on the red block"] * len(self.val_id)
-
-            self.val_dataset_dir = "dataset_example/droid_new_setup_eval/stack"
-            self.val_id = ['163907','164016','164350','232817','233512','234632','234823']
+            self.val_dataset_dir = f'dataset_example/droid_new_setup_full/{self.task_type}'
+            repeat_num = 4
+            self.val_id = ['0000', '0001', '0002', '0003', '0004']*repeat_num
             self.start_idx = [10] * len(self.val_id)
-            self.instruction = ["stack the blue block on the red block","stack the blue block on the red block","stack the blue block on the red block","stack the blue block on the red block","stack the green block on the red block","stack the blue block on the green block","stack the blue block on the green block"]
+            self.instruction = ["stack the blue block on the red block",
+                                "stack the blue block on the red block",
+                                "stack the blue block on the red block",
+                                "stack the blue block on the red block",
+                                "stack the green block on the red block",]*repeat_num
         
         elif self.task_type == 'drawer':
-            self.val_dataset_dir = '/cephfs/shared/droid_hf/data_iclr/droid_real_all_iclr/droid_real0913/droid_pi05'
-            self.val_id = [224640,224723,224832,225306,234949]
+            self.val_dataset_dir = 'dataset_example/droid_new_setup_eval/drawer'
+            repeat_num = 4
+            self.val_id = ['0000', '0001', '0002', '0003', '0004']*repeat_num
             self.start_idx = [10]*len(self.val_id)
             self.instruction = ['pick up the sponge and place in the drawer', 'pick up the sponge and place in the drawer', 'pick up the sponge and place in the drawer', 'pick up the sponge and place in the drawer', 'pick up the sponge and place in the drawer']
             self.policy_skip_step = 3
