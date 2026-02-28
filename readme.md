@@ -12,7 +12,7 @@ ICLR 2026
 
 </div>
 
-This repo include the official PyTorch implementation for ICLR 2026 [**Ctrl-World**](https://sites.google.com/view/ctrl-world) paper. And also include the world model post-training process in [**VLAW**](https://sites.google.com/view/vlaw-arxiv) paper.
+This repo includes the official PyTorch implementation for ICLR 2026 [**Ctrl-World**](https://sites.google.com/view/ctrl-world) paper. And also include the world model post-training process in [**VLAW**](https://sites.google.com/view/vlaw-arxiv) paper.
 
 **TL; DR:** Ctrl-World is an action-conditioned world model compatible with modern VLA policies and enables policy-in-the-loop rollouts entirely in imagination, which can be used to evaluate and improve the **instruction following** ability of VLA. 
 
@@ -24,15 +24,15 @@ This repo include the official PyTorch implementation for ICLR 2026 [**Ctrl-Worl
 
 
 ##  Content
+**[2026.02] New: add initial conditiones use in paper [here](https://github.com/Robert-gyj/Ctrl-World?tab=readme-ov-file#-3-new-interact-with-pi_05-model-within-world-model-with-initial-conditions-in-the-paper) and wm post-training [here](https://github.com/Robert-gyj/Ctrl-World?tab=readme-ov-file#-3-new-post-train-world-model-on-down-stream-tasks)**
 
-**1. Generate synthetic trajectory via replaying the recorded actions in DROID dataset.** 
+[2025.10] 1. Generate synthetic trajectory via replaying the recorded actions in DROID dataset.
 
-**2. Generate synthetic trajectory via keyboard interactions.**
+[2025.10] 2. Generate synthetic trajectory via keyboard interactions.
 
-**3. Generate synthetic trajectory via interaction with advanced VLA model $\pi_{0.5}$.**
+[2025.10] 3. Generate synthetic trajectory via interaction with advanced VLA model $\pi_{0.5}$.
 
-**4. A training pipeline of Ctrl-World on DROID dataset.**
-
+[2025.10] 4. A training pipeline of Ctrl-World on DROID dataset.
 
 
 ## Installation 🛠️
